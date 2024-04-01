@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(EntityVillager.class)
 public abstract class MixinEntityVillager {
-    @Overwrite
+    @Overwrite()
     public boolean allowLeashing()
     {
         return true;

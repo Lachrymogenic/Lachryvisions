@@ -23,7 +23,7 @@ public class Core implements IEarlyMixinLoader, IFMLLoadingPlugin {
     public List<String> getMixins(Set<String> loadedCoremods) {
         List<String> mixins = new ArrayList<>();
         if(!loadedCoremods.contains("Bukkit")) {
-            mixins.add("early.MixinGuiMainMenu");
+
         }
         return mixins;
     }

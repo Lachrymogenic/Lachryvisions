@@ -10,19 +10,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Objects;
 import java.util.Random;
 
 @Mixin(BlockFarmland.class)
 public abstract class MixinBlockFarmland {
-    @Overwrite
-    public void onFallenUpon(World world, int x, int y, int z, Entity entity, float p_149746_6_)
+    @Inject(method = "onFallenUpon",at = @At("HEAD"),cancellable = true)
+    public void onFallenUpon(World world, int x, int y, int z, Entity entity, float p_149746_6_, CallbackInfo ci)
     {
         if (!world.isRemote && world.rand.nextFloat() < p_149746_6_ - 0.5F)
         {
             if (!(entity instanceof EntityPlayer) && !world.getGameRules().getGameRuleBooleanValue("mobGriefing"))
             {
+                ci.cancel();
                 return;
             }
             if (entity instanceof EntityPlayer) {
@@ -36,12 +40,14 @@ public abstract class MixinBlockFarmland {
                             ((EntityPlayer) entity).renderBrokenItemStack(((EntityPlayer) entity).getCurrentArmor(0));
                             ((EntityPlayer) entity).setCurrentItemOrArmor(1,null);
                         }
+                        ci.cancel();
                         return;
                     }
                 }
             }
             world.setBlock(x, y, z, Blocks.dirt);
         }
+        ci.cancel();
     }
 
 }
