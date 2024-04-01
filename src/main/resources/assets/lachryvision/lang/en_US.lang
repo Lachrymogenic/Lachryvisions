@@ -6,3 +6,5 @@ tile.log_slab.jungle.name=Jungle Log Slab
 tile.log_slab.big_oak.name=Dark Oak Log Slab
 tile.log_slab=log_slab
 commands.gmc.usage=/gmc
+commands.gms.usage=/gma
+commands.gma.usage=/gms
