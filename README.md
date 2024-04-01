@@ -32,7 +32,10 @@ It's not Minecraft anymore.<br><br>So I made a mod that allows me to modify Mine
 ## Will you port to 1.9+?
 No! Although I'm down for making a similar mod for 1.8.9 but removing stuff is harder than adding.
 
-## Setup
+# Installation
+Lachryvisions requires [Unimixins](https://www.curseforge.com/minecraft/mc-mods/unimixins) to load mixins and operate correctly. Once you have both mods downloaded, simply
+drag and drop them into your mods folder. You must be using the latest version of **1.7.10 Forge**.
+# Setup
 
 You must use Java 8 to build the mod. (You can force a specific Java version in your IDE settings, or by setting the `JAVA_HOME` environmental variable if you are building from the command line.)
 
