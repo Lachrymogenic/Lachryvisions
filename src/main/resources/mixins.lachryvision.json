@@ -1,0 +1,24 @@
+{
+    "required": true,
+    "minVersion": "0.7.11",
+    "package": "me.lachrymogenic.lachryvision.mixin",
+    "refmap": "mixins.lachryvision.refmap.json",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "MixinEntityBoat",
+        "MixinItem",
+        "MixinForgeRender",
+
+        "MixinSign",
+        "MixinSignTile",
+        "MixinSignRenderer",
+        "MixinC12PacketUpdateSign",
+        "MixinS33PacketUpdateSign",
+        "MixinNetHandlerPlayServer",
+
+        "MixinEntityVillager",
+        "MixinBlockFarmland",
+
+        "MixinGuiFlatPresets"
+    ]
+}

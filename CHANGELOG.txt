@@ -1,0 +1,21 @@
+LachREVISIONS:
+- Boats no longer break when crashing into walls
+- You can now wear Jack o' Lanterns! This change was added so that you can use them as Mining Helmets with Optifine!
+- You can now wear Glass and Stained Glass!
+- You can now wear Dispensers!
+- Crosshair is now hidden when in Perspective / F5 mode. It was really annoying.
+- You can now craft slabs back into full blocks!
+- Sign length has been increased to 16 characters instead of 15.
+- You can now press the left and right arrow keys to traverse sign text, making them easier to edit!
+- You can now use /gma, /gmc and /gms to switch gamemodes!
+- You can now use Leashes on Villagers!
+- Increased item stack limits from 16 to 64!
+- Golden Swords now do as much damage as a Diamond Sword!
+- Farmers boots! Walking on your crops with leather boots no longer tramples them!
+- New flat world presets!
+
+Lachry's Additions:
+- You can now craft log slabs!
+
+Backported features:
+- None yet (i am nub lelz)

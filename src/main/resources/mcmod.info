@@ -1,0 +1,22 @@
+[
+{
+  "modid": "lachryvision",
+  "name": "Lachryvisions",
+  "description": "A mod that aims to create an experience untainted by Microsoft. A version of Minecraft where 1.9+ never happened. Includes features such as:
+- Gameplay tweaks.
+- Backported features (Not yet.)
+- Personal Vanilla+ additions, more slabs and blocks.
+- More commands (like /gmc, /gma, /gms).
+- More crafting recipes.
+and many more!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/Lachrymogenic",
+  "updateUrl": "",
+  "authorList": ["Lachrymogenic"],
+  "credits": "Forge, FML, UniMixins, Notch (a.k.a Markus Persson)",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": ["UniMixins","urmum"]
+}
+]

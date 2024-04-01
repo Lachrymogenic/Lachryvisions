@@ -1,0 +1,8 @@
+tile.log_slab.oak.name=Oak Log Slab
+tile.log_slab.birch.name=Birch Log Slab
+tile.log_slab.acacia.name=Acacia Log Slab
+tile.log_slab.spruce.name=Spruce Log Slab
+tile.log_slab.jungle.name=Jungle Log Slab
+tile.log_slab.big_oak.name=Dark Oak Log Slab
+tile.log_slab=log_slab
+commands.gmc.usage=/gmc
