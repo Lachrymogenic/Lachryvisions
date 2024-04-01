@@ -9,6 +9,14 @@
 is a mod for **1.7.10** that aims to extend the functionality of the Minecraft version **1.7.10** 
 with new features and certain backported features that are designed to maintain the look and feel of Vanilla Minecraft,
 whilst also making the game better.
+
+<p float="left"> 
+<img src="./showcase/showcase_01.gif" alt="drawing" width="400"/> <img src="./showcase/showcase_02.gif" alt="drawing" width="400"/>
+</p>
+<p float="left"> 
+<img src="./showcase/showcase_03.gif" alt="drawing" width="400"/> <img src="./showcase/showcase_04.png" alt="drawing" width="400"/>
+</p>
+
 ### TLDR: I HATE MICROSOFT.
 1.9+ are the worst versions of the game, especially 1.19 and 1.20. In my eyes, there is just so much bloat
 that doesn't need to be in the game, and Microsoft's acquisition of Minecraft aswell as annexing of Notch and kicking him
