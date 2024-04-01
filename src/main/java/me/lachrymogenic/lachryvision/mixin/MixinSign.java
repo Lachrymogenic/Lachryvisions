@@ -4,27 +4,35 @@ import me.lachrymogenic.lachryvision.Constants;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiEditSign;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.ChatAllowedCharacters;
+import net.minecraft.util.ReportedException;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Arrays;
+import java.lang.reflect.Field;
 
 @Mixin(GuiEditSign.class)
 public abstract class MixinSign extends GuiScreen {
+    @Shadow
     private TileEntitySign tileSign;
+    @Shadow
     private int editLine;
-    private static int backLogInt;
+    private static int backLogInt = 0;
     private GuiButton doneBtn;
 
-    public void GuiEditSign(TileEntitySign p_i1097_1_)
+
+    public MixinSign(TileEntitySign p_i1097_1_)
     {
         this.tileSign = p_i1097_1_;
     }
+
+
     @Inject(method = "onGuiClosed",at = @At("HEAD"),cancellable = true)
     public void onGuiClosed(CallbackInfo ci) {
         backLogInt = 0;
@@ -49,7 +57,7 @@ public abstract class MixinSign extends GuiScreen {
     }
 
     @Overwrite
-    protected void keyTyped(char p_73869_1_, int p_73869_2_)
+    protected void keyTyped(char p_73869_1_, int p_73869_2_) throws ReportedException
     {
         char character = p_73869_1_;
         int integer = p_73869_2_;
@@ -59,7 +67,7 @@ public abstract class MixinSign extends GuiScreen {
         else if (integer == 205) {
             if (backLogInt < 0) backLogInt++;
         }
-        Constants.LOGGER.info("Character: " + character + " Integer: " + integer + " Text: " + this.tileSign.signText[this.editLine] + " Backlog: " + backLogInt);
+        //Constants.LOGGER.info("Character: " + character + " Integer: " + integer + " Text: " + this.tileSign.signText[this.editLine] + " Backlog: " + backLogInt);
         if (integer == 200)
         {
             backLogInt = 0;
