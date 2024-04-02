@@ -2,9 +2,8 @@ package me.lachrymogenic.lachryvision;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import me.lachrymogenic.lachryvision.commands.CommandGMA;
-import me.lachrymogenic.lachryvision.commands.CommandGMC;
-import me.lachrymogenic.lachryvision.commands.CommandGMS;
+import me.lachrymogenic.lachryvision.commands.*;
+import me.lachrymogenic.lachryvision.events.RightClickBlockEvent;
 import me.lachrymogenic.lachryvision.mixin.MixinItem;
 import me.lachrymogenic.lachryvision.registry.BlockRegistry;
 import me.lachrymogenic.lachryvision.registry.CraftingRegistry;
@@ -21,6 +20,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.WorldSettings;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Constants.MODID, version = Constants.VERSION)
@@ -34,10 +34,11 @@ public class Main
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
         /** Commands**/
-        ServerCommandManager commandManager = (ServerCommandManager) MinecraftServer.getServer().getCommandManager();
-        commandManager.registerCommand(new CommandGMC());
-        commandManager.registerCommand(new CommandGMS());
-        commandManager.registerCommand(new CommandGMA());
+        //ServerCommandManager commandManager = (ServerCommandManager) MinecraftServer.getServer().getCommandManager();
+        event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.CREATIVE));
+        event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.SURVIVAL));
+        event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.ADVENTURE));
+        event.registerServerCommand(new CommandFill());
     }
     @EventHandler
     public void init(FMLInitializationEvent event)
@@ -48,9 +49,7 @@ public class Main
         Items.ender_pearl.setMaxStackSize(64);
         Items.experience_bottle.setMaxStackSize(64);
         Items.golden_sword.setNoRepair();
-        Items.golden_sword.setMaxDamage(20);
-		// some example code
-        //Constants.LOGGER.info("DIRT BLOCK >> "+Blocks.dirt.getUnlocalizedName());
+        MinecraftForge.EVENT_BUS.register(new me.lachrymogenic.lachryvision.events.RightClickBlockEvent());
 
     }
 }

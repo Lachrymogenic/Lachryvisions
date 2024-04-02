@@ -25,7 +25,7 @@ public abstract class MixinItem {
         try {
             Field field = Item.ToolMaterial.class.getDeclaredField("damageVsEntity");
             field.setAccessible(true);
-            field.set(GOLD, 3.0F);
+            field.set(GOLD, 2.5F);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
