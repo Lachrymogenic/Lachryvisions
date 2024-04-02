@@ -16,7 +16,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiEditSign;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.server.MinecraftServer;
@@ -32,16 +34,25 @@ import static net.minecraft.item.Item.ToolMaterial.GOLD;
 
 public class RightClickBlockEvent {
     public boolean test = true;
+    
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onRightClickBlock(PlayerInteractEvent event) throws NoSuchFieldException, IllegalAccessException {
+    public void onRightClickBlock(PlayerInteractEvent event) {
         /** Singleplayer for now, for multiplayer, I'd have to set up permissions and stuff.
          * It took me a long time just to get this to work, but I got it in the end. **/
 
             if (MinecraftServer.getServer().isSinglePlayer()) {
                 EntityPlayer player = MinecraftServer.getServer().getEntityWorld().getPlayerEntityByName(event.entityPlayer.getDisplayName());;
                 TileEntity entity = event.world.getTileEntity(event.x, event.y, event.z);
-                if (player.onGround && !player.isSneaking()) {
+                boolean check = true;
+                if (player.getCurrentEquippedItem() != null) {
+                    if (player.getCurrentEquippedItem().getItem() == Items.sign ||
+                            player.getCurrentEquippedItem().getItem() == Items.bow) {
+                        check = false;
+                    }
+                }
+                
+                if (player.onGround && !player.isSneaking() && check) {
                     if (entity instanceof TileEntitySign) {
                         ObfuscationReflectionHelper.setPrivateValue(TileEntitySign.class, (TileEntitySign) entity, player, "field_145917_k");
                         ObfuscationReflectionHelper.setPrivateValue(TileEntitySign.class, (TileEntitySign) entity, true, "field_145916_j");

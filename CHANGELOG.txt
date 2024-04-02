@@ -2,6 +2,7 @@ LachREVISIONS:
 - Gold swords now do 6.5 damage after some consideration, reverted their durability.
 - Gamemode commands now work with command blocks.
 - You can now right-click signs to edit them. Singleplayer only, for now.
+- If you run out of space on a sign line, it will move you down to the next line.
 
 Backported features:
 - Backported /fill command from Et Futurum.

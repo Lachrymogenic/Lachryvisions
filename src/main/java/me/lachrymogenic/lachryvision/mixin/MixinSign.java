@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 @Mixin(GuiEditSign.class)
 public abstract class MixinSign extends GuiScreen {
@@ -80,15 +81,31 @@ public abstract class MixinSign extends GuiScreen {
             this.editLine = this.editLine + 1 & 3;
         }
 
-        if (integer == 14 && !this.tileSign.signText[this.editLine].isEmpty())
+        if (integer == 14)
         {
-            this.tileSign.signText[this.editLine] = returnString(this.tileSign.signText[this.editLine],character,true);
+            if (this.editLine != 0 && this.tileSign.signText[this.editLine].isEmpty() &&
+                    !this.tileSign.signText[this.editLine - 1].isEmpty())
+            {
+                this.editLine = this.editLine - 1 & 3;
+                this.tileSign.signText[this.editLine] = returnString(this.tileSign.signText[this.editLine],character,true);
+            }
+            else if (!this.tileSign.signText[this.editLine].isEmpty()) {
+                this.tileSign.signText[this.editLine] = returnString(this.tileSign.signText[this.editLine],character,true);
+            }
             //this.tileSign.signText[this.editLine] = this.tileSign.signText[this.editLine].substring(0, this.tileSign.signText[this.editLine].length() - 1);
         }
 
         if (ChatAllowedCharacters.isAllowedCharacter(character) && this.tileSign.signText[this.editLine].length() < Constants.signLength)
         {
             this.tileSign.signText[this.editLine] = returnString(this.tileSign.signText[this.editLine],character,false);
+        }
+        else if (ChatAllowedCharacters.isAllowedCharacter(character) && this.tileSign.signText[this.editLine].length() >= Constants.signLength) {
+            if (this.editLine != 3) {
+                if (this.tileSign.signText[this.editLine + 1].length() < Constants.signLength) {
+                    this.editLine = this.editLine + 1 & 3;
+                    this.tileSign.signText[this.editLine] = returnString(this.tileSign.signText[this.editLine],character,false);
+                }
+            }
         }
 
         if (integer == 1)
