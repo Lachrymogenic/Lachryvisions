@@ -3,7 +3,8 @@ LachREVISIONS:
 - Gamemode commands now work with command blocks.
 - You can now right-click signs to edit them. Singleplayer only, for now.
 - If you run out of space on a sign line, it will move you down to the next line.
+- Horse Rearing chance has been raised from 1/4 to 1/1000 because it was too annoying.
 
 Backported features:
 - Backported /fill command from Et Futurum.
-
+- Backported Mutton and an Item registration class from Et Futurum.

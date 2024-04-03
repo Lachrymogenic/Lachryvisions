@@ -1,3 +1,6 @@
+item.mutton_raw.name=Raw Mutton
+item.mutton_cooked.name=Cooked Mutton
+
 tile.log_slab.oak.name=Oak Log Slab
 tile.log_slab.birch.name=Birch Log Slab
 tile.log_slab.acacia.name=Acacia Log Slab

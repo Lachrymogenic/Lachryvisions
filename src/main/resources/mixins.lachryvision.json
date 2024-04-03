@@ -19,6 +19,9 @@
         "MixinEntityVillager",
         "MixinBlockFarmland",
 
-        "MixinGuiFlatPresets"
+        "MixinGuiFlatPresets",
+
+        "MixinHorse",
+        "MixinSheep"
     ]
 }

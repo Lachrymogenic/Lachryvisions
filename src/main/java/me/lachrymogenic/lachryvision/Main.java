@@ -2,11 +2,13 @@ package me.lachrymogenic.lachryvision;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import me.lachrymogenic.lachryvision.commands.*;
 import me.lachrymogenic.lachryvision.events.RightClickBlockEvent;
 import me.lachrymogenic.lachryvision.mixin.MixinItem;
 import me.lachrymogenic.lachryvision.registry.BlockRegistry;
 import me.lachrymogenic.lachryvision.registry.CraftingRegistry;
+import me.lachrymogenic.lachryvision.registry.ItemRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandManager;
@@ -30,6 +32,7 @@ public class Main
     public void preInit(FMLPreInitializationEvent event) {
         BlockRegistry.registerBlocks();
         CraftingRegistry.register();
+        ItemRegistry.register();
     }
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
@@ -50,6 +53,7 @@ public class Main
         Items.experience_bottle.setMaxStackSize(64);
         Items.golden_sword.setNoRepair();
         MinecraftForge.EVENT_BUS.register(new me.lachrymogenic.lachryvision.events.RightClickBlockEvent());
+        GameRegistry.addSmelting(ItemRegistry.raw_mutton,new ItemStack(ItemRegistry.cooked_mutton,1),30);
 
     }
 }
