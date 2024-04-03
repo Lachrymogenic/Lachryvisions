@@ -51,7 +51,7 @@ public class Main
         Items.sign.setMaxStackSize(64);
         Items.ender_pearl.setMaxStackSize(64);
         Items.experience_bottle.setMaxStackSize(64);
-        Items.golden_sword.setNoRepair();
+        //Items.golden_sword.setNoRepair();
         MinecraftForge.EVENT_BUS.register(new me.lachrymogenic.lachryvision.events.RightClickBlockEvent());
         GameRegistry.addSmelting(ItemRegistry.raw_mutton,new ItemStack(ItemRegistry.cooked_mutton,1),30);
 
