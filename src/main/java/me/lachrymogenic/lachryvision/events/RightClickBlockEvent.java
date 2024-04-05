@@ -43,20 +43,25 @@ public class RightClickBlockEvent {
 
             if (MinecraftServer.getServer().isSinglePlayer()) {
                 EntityPlayer player = MinecraftServer.getServer().getEntityWorld().getPlayerEntityByName(event.entityPlayer.getDisplayName());;
+                //EntityPlayer player = event.entityPlayer.worldObj.getPlayerEntityByName(event.entityPlayer.getDisplayName());
+                //Constants.LOGGER.info("Player: " + event.entityPlayer.worldObj.getPlayerEntityByName(event.entityPlayer.getDisplayName()));
+                //Constants.LOGGER.info("Player: " + player);
                 TileEntity entity = event.world.getTileEntity(event.x, event.y, event.z);
                 boolean check = true;
-                if (player.getCurrentEquippedItem() != null) {
-                    if (player.getCurrentEquippedItem().getItem() == Items.sign ||
-                            player.getCurrentEquippedItem().getItem() == Items.bow) {
-                        check = false;
+                if (player instanceof EntityPlayerMP) {
+                    if (player.getCurrentEquippedItem() != null) {
+                        if (player.getCurrentEquippedItem().getItem() == Items.sign ||
+                                player.getCurrentEquippedItem().getItem() == Items.bow) {
+                            check = false;
+                        }
                     }
-                }
-                
-                if (player.onGround && !player.isSneaking() && check) {
-                    if (entity instanceof TileEntitySign) {
-                        ObfuscationReflectionHelper.setPrivateValue(TileEntitySign.class, (TileEntitySign) entity, player, "field_145917_k");
-                        ObfuscationReflectionHelper.setPrivateValue(TileEntitySign.class, (TileEntitySign) entity, true, "field_145916_j");
-                        FMLClientHandler.instance().displayGuiScreen(event.entityPlayer,new GuiEditSign((TileEntitySign) entity));
+
+                    if (player.onGround && !player.isSneaking() && check) {
+                        if (entity instanceof TileEntitySign) {
+                            ObfuscationReflectionHelper.setPrivateValue(TileEntitySign.class, (TileEntitySign) entity, player, "field_145917_k");
+                            ObfuscationReflectionHelper.setPrivateValue(TileEntitySign.class, (TileEntitySign) entity, true, "field_145916_j");
+                            FMLClientHandler.instance().displayGuiScreen(event.entityPlayer,new GuiEditSign((TileEntitySign) entity));
+                        }
                     }
                 }
             }
