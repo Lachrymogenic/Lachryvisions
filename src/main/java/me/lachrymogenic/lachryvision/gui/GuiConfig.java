@@ -43,6 +43,7 @@ public class GuiConfig extends cpw.mods.fml.client.config.GuiConfig {
         List<IConfigElement> CategoryGeneral = new ConfigElement(config.getCategory("general")).getChildElements();
         List<IConfigElement> CategoryRegistry = new ConfigElement(config.getCategory("registry")).getChildElements();
 
+        //CategoryGeneral.add(new DummyConfigElement<String>("Crops Trample", "Crops trample", ConfigGuiType.STRING, "me.lachryvision.config.general.croptrampling", new String[] {"Crops trample","Crops protected by Leather Boots","Crops never trample"}));
         Categories.add(new DummyConfigElement.DummyCategoryElement("General", "me.lachryvision.config.general", CategoryGeneral));
         Categories.add(new DummyConfigElement.DummyCategoryElement("Registry", "me.lachryvision.config.registry", CategoryRegistry));
 

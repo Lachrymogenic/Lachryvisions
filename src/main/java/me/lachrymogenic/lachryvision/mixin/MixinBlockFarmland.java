@@ -25,8 +25,14 @@ public abstract class MixinBlockFarmland {
     @Inject(method = "onFallenUpon",at = @At("HEAD"),cancellable = true)
     public void onFallenUpon(World world, int x, int y, int z, Entity entity, float p_149746_6_, CallbackInfo ci)
     {
-        if (!Config.NoTramplingCrops) {
-            if (Config.LeatherBootsProtectCrops) {
+        // If Crops never trample, cancel this entire function.
+        if (Objects.equals(Config.CropTrampling, Config.CropTramplingChoices[2])) {
+            ci.cancel();
+        }
+        // If Crops trample, this code is not run, instead default code is ran instead.
+        // unless LeatherBootsProtectCrops is enabled, then the code is run, crops dont trample when wearing the boots.
+        if (!Objects.equals(Config.CropTrampling, Config.CropTramplingChoices[0])) {
+            if (Objects.equals(Config.CropTrampling, Config.CropTramplingChoices[1])) {
                 if (!world.isRemote && world.rand.nextFloat() < p_149746_6_ - 0.5F)
                 {
                     if (!(entity instanceof EntityPlayer) && !world.getGameRules().getGameRuleBooleanValue("mobGriefing"))
@@ -38,7 +44,7 @@ public abstract class MixinBlockFarmland {
                         EntityPlayer player = ((EntityPlayer) entity);
                         if (player.getCurrentArmor(0) != null) {
                             if ((Objects.equals(player.getCurrentArmor(0).getItem().getUnlocalizedName(), "item.bootsCloth")) &&
-                                    Config.LeatherBootsProtectCrops) {
+                                    Objects.equals(Config.CropTrampling, Config.CropTramplingChoices[1])) {
                                 if (!player.capabilities.isCreativeMode) player.getCurrentArmor(0).attemptDamageItem(1,new Random());
                                 if (
                                         player.getCurrentArmor(0).getItemDamage() >=
