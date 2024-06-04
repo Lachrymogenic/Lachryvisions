@@ -1,12 +1,15 @@
 package me.lachrymogenic.lachryvision.mixin;
 
+import me.lachrymogenic.lachryvision.Config;
 import me.lachrymogenic.lachryvision.Constants;
 import net.minecraft.block.BlockFarmland;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -30,15 +33,17 @@ public abstract class MixinBlockFarmland {
                 return;
             }
             if (entity instanceof EntityPlayer) {
-                if (((EntityPlayer) entity).getCurrentArmor(0) != null) {
-                    if (Objects.equals(((EntityPlayer) entity).getCurrentArmor(0).getItem().getUnlocalizedName(), "item.bootsCloth")) {
-                        ((EntityPlayer) entity).getCurrentArmor(0).attemptDamageItem(1,new Random());
+                EntityPlayer player = ((EntityPlayer) entity);
+                if (player.getCurrentArmor(0) != null) {
+                    if ((Objects.equals(player.getCurrentArmor(0).getItem().getUnlocalizedName(), "item.bootsCloth")) &&
+                    Config.LeatherBootsProtectCrops) {
+                        if (!player.capabilities.isCreativeMode) player.getCurrentArmor(0).attemptDamageItem(1,new Random());
                         if (
-                                ((EntityPlayer) entity).getCurrentArmor(0).getItemDamage() >=
-                                ((EntityPlayer) entity).getCurrentArmor(0).getMaxDamage()
+                                player.getCurrentArmor(0).getItemDamage() >=
+                                player.getCurrentArmor(0).getMaxDamage()
                         ) {
-                            ((EntityPlayer) entity).renderBrokenItemStack(((EntityPlayer) entity).getCurrentArmor(0));
-                            ((EntityPlayer) entity).setCurrentItemOrArmor(1,null);
+                            player.renderBrokenItemStack(((EntityPlayer) entity).getCurrentArmor(0));
+                            player.setCurrentItemOrArmor(1,null);
                         }
                         ci.cancel();
                         return;

@@ -25,11 +25,12 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldSettings;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = Constants.MODID, version = Constants.VERSION)
+@Mod(modid = Constants.MODID, version = Constants.VERSION,guiFactory = Constants.GUIFACTORY)
 public class Main
 {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        Config.init(event.getModConfigurationDirectory());
         BlockRegistry.registerBlocks();
         CraftingRegistry.register();
         ItemRegistry.register();
@@ -38,19 +39,17 @@ public class Main
     public void onServerStart(FMLServerStartingEvent event) {
         /** Commands**/
         //ServerCommandManager commandManager = (ServerCommandManager) MinecraftServer.getServer().getCommandManager();
-        event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.CREATIVE));
-        event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.SURVIVAL));
-        event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.ADVENTURE));
-        event.registerServerCommand(new CommandFill());
+        if (Config.RegisterCustomCommands) {
+            event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.CREATIVE));
+            event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.SURVIVAL));
+            event.registerServerCommand(new CommandGamemode(WorldSettings.GameType.ADVENTURE));
+            event.registerServerCommand(new CommandFill());
+        }
     }
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        Items.snowball.setMaxStackSize(64);
-        Items.egg.setMaxStackSize(64);
-        Items.sign.setMaxStackSize(64);
-        Items.ender_pearl.setMaxStackSize(64);
-        Items.experience_bottle.setMaxStackSize(64);
+        Constants.checkItemConfig();
         //Items.golden_sword.setNoRepair();
         MinecraftForge.EVENT_BUS.register(new me.lachrymogenic.lachryvision.events.RightClickBlockEvent());
         GameRegistry.addSmelting(ItemRegistry.raw_mutton,new ItemStack(ItemRegistry.cooked_mutton,1),30);

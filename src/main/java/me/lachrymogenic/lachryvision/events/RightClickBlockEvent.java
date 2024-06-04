@@ -9,6 +9,7 @@ import cpw.mods.fml.common.network.handshake.NetworkDispatcher;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import me.lachrymogenic.lachryvision.Config;
 import me.lachrymogenic.lachryvision.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSign;
@@ -57,7 +58,7 @@ public class RightClickBlockEvent {
                     }
 
                     if (player.onGround && !player.isSneaking() && check) {
-                        if (entity instanceof TileEntitySign) {
+                        if (entity instanceof TileEntitySign && Config.BetterSignEditing) {
                             ObfuscationReflectionHelper.setPrivateValue(TileEntitySign.class, (TileEntitySign) entity, player, "field_145917_k");
                             ObfuscationReflectionHelper.setPrivateValue(TileEntitySign.class, (TileEntitySign) entity, true, "field_145916_j");
                             FMLClientHandler.instance().displayGuiScreen(event.entityPlayer,new GuiEditSign((TileEntitySign) entity));

@@ -1,3 +1,6 @@
+me.lachryvision.config.general.tooltip=Gameplay options and tweaks
+me.lachryvision.config.registry.tooltip=Disable custom blocks and items, requires restart to take effect.
+
 item.mutton_raw.name=Raw Mutton
 item.mutton_cooked.name=Cooked Mutton
 

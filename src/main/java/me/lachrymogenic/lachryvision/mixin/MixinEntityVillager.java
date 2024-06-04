@@ -1,5 +1,6 @@
 package me.lachrymogenic.lachryvision.mixin;
 
+import me.lachrymogenic.lachryvision.Config;
 import net.minecraft.entity.passive.EntityVillager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -9,6 +10,6 @@ public abstract class MixinEntityVillager {
     @Overwrite()
     public boolean allowLeashing()
     {
-        return true;
+        return Config.LeashableVillagers;
     }
 }

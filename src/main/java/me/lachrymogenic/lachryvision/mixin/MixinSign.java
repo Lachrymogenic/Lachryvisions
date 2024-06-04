@@ -1,5 +1,6 @@
 package me.lachrymogenic.lachryvision.mixin;
 
+import me.lachrymogenic.lachryvision.Config;
 import me.lachrymogenic.lachryvision.Constants;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -63,10 +64,10 @@ public abstract class MixinSign extends GuiScreen {
         char character = p_73869_1_;
         int integer = p_73869_2_;
         if (integer == 203) {
-           if (backLogInt > -this.tileSign.signText[this.editLine].length()) backLogInt--;
+           if ((backLogInt > -this.tileSign.signText[this.editLine].length()) && Config.BetterSignEditing) backLogInt--;
         }
         else if (integer == 205) {
-            if (backLogInt < 0) backLogInt++;
+            if (backLogInt < 0 && Config.BetterSignEditing) backLogInt++;
         }
         //Constants.LOGGER.info("Character: " + character + " Integer: " + integer + " Text: " + this.tileSign.signText[this.editLine] + " Backlog: " + backLogInt);
         if (integer == 200)

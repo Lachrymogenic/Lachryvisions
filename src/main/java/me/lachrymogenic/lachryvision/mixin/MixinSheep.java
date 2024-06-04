@@ -1,5 +1,6 @@
 package me.lachrymogenic.lachryvision.mixin;
 
+import me.lachrymogenic.lachryvision.Config;
 import me.lachrymogenic.lachryvision.registry.ItemRegistry;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntitySheep;
@@ -25,6 +26,8 @@ public abstract class MixinSheep extends EntityAnimal {
     @Inject(method = "dropFewItems",at=@At("HEAD"),cancellable = true)
     protected void newDrop(boolean p_70628_1_, int p_70628_2_, CallbackInfo ci)
     {
-        this.entityDropItem(new ItemStack(ItemRegistry.raw_mutton, ThreadLocalRandom.current().nextInt(1, 3) + p_70628_2_),0.0F);
+        if (Config.RegisterCustomItems) {
+            this.entityDropItem(new ItemStack(ItemRegistry.raw_mutton, ThreadLocalRandom.current().nextInt(1, 3) + p_70628_2_),0.0F);
+        }
     }
 }

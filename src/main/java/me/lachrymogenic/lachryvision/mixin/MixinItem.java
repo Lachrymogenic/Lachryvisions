@@ -20,16 +20,16 @@ import static net.minecraft.item.Item.ToolMaterial.*;
 @Mixin(Item.class)
 public abstract class MixinItem {
 
-    @Inject(method = "<clinit>", at = @At("RETURN"))
-    private static void modifyGoldToolMaterial(CallbackInfo ci) {
-        try {
-            Field field = Item.ToolMaterial.class.getDeclaredField("damageVsEntity");
-            field.setAccessible(true);
-            field.set(GOLD, 2.5F);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Inject(method = "<clinit>", at = @At("RETURN"))
+//    private static void modifyGoldToolMaterial(CallbackInfo ci) {
+//        try {
+//            Field field = Item.ToolMaterial.class.getDeclaredField("damageVsEntity");
+//            field.setAccessible(true);
+//            field.set(GOLD, 2.5F);
+//        } catch (NoSuchFieldException | IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Overwrite(remap = false)
     public boolean isValidArmor(ItemStack stack, int armorType, Entity entity)

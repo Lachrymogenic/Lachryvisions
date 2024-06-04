@@ -1,6 +1,7 @@
 package me.lachrymogenic.lachryvision.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import me.lachrymogenic.lachryvision.Config;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -36,18 +37,20 @@ public class CraftingRegistry {
                     new ItemStack(Blocks.wooden_slab,1,i));
         }
         /** Log Slabs*/
-        for (int i = 0; i < 6; i++) {
-            if (i == 4 || i == 5) {
-                GameRegistry.addRecipe(new ItemStack(BlockRegistry.LogSlab,6,i),
-                        new Object[] {"###", '#', new ItemStack(Blocks.log2,1,i - 4)});
-                GameRegistry.addRecipe(new ItemStack(Blocks.log2,1,i - 4),
-                        new Object[] {"#", "#", '#', new ItemStack(BlockRegistry.LogSlab,1,i)});
-            }
-            else {
-                GameRegistry.addRecipe(new ItemStack(BlockRegistry.LogSlab,6,i),
-                        new Object[] {"###", '#', new ItemStack(Blocks.log,1,i)});
-                GameRegistry.addRecipe(new ItemStack(Blocks.log,1,i),
-                        new Object[] {"#", "#", '#', new ItemStack(BlockRegistry.LogSlab,1,i)});
+        if (Config.RegisterCustomBlocks) {
+            for (int i = 0; i < 6; i++) {
+                if (i == 4 || i == 5) {
+                    GameRegistry.addRecipe(new ItemStack(BlockRegistry.LogSlab,6,i),
+                            new Object[] {"###", '#', new ItemStack(Blocks.log2,1,i - 4)});
+                    GameRegistry.addRecipe(new ItemStack(Blocks.log2,1,i - 4),
+                            new Object[] {"#", "#", '#', new ItemStack(BlockRegistry.LogSlab,1,i)});
+                }
+                else {
+                    GameRegistry.addRecipe(new ItemStack(BlockRegistry.LogSlab,6,i),
+                            new Object[] {"###", '#', new ItemStack(Blocks.log,1,i)});
+                    GameRegistry.addRecipe(new ItemStack(Blocks.log,1,i),
+                            new Object[] {"#", "#", '#', new ItemStack(BlockRegistry.LogSlab,1,i)});
+                }
             }
         }
 

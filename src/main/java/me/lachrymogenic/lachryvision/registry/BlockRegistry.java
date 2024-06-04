@@ -1,6 +1,7 @@
 package me.lachrymogenic.lachryvision.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import me.lachrymogenic.lachryvision.Config;
 import me.lachrymogenic.lachryvision.blocks.LogSlab;
 import me.lachrymogenic.lachryvision.items.ItemLogSlab;
 import net.minecraft.block.Block;
@@ -16,8 +17,10 @@ public class BlockRegistry {
     public static BlockSlab LogSlab = new LogSlab("log_slab",false);
     public static BlockSlab DoubleLogSlab = new LogSlab("double_log_slab",true);
     public static void registerBlocks() {
-        blockSlabList.add(LogSlab);
-        blockSlabList.add(DoubleLogSlab);
+        if (Config.RegisterCustomBlocks) {
+            blockSlabList.add(LogSlab);
+            blockSlabList.add(DoubleLogSlab);
+        }
         for(Block block:blockSlabList) {
             GameRegistry.registerBlock(block, ItemLogSlab.class,block.getUnlocalizedName().substring(5));
         }

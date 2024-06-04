@@ -1,5 +1,6 @@
 package me.lachrymogenic.lachryvision.mixin;
 
+import me.lachrymogenic.lachryvision.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraftforge.client.GuiIngameForge;
@@ -17,8 +18,10 @@ public class MixinForgeRender extends GuiIngame {
 
     @Inject(method = "renderCrosshairs",at = @At("HEAD"), cancellable = true,remap = false)
     private void renderCrosshairs(int width, int height, CallbackInfo cir) {
-        if (Minecraft.getMinecraft().gameSettings.thirdPersonView > 0) {
-            cir.cancel();
+        if (Config.CrosshairVisibleThirdPerson) {
+            if (Minecraft.getMinecraft().gameSettings.thirdPersonView > 0) {
+                cir.cancel();
+            }
         }
     }
 }

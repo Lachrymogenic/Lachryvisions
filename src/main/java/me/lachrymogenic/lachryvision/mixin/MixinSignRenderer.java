@@ -1,5 +1,6 @@
 package me.lachrymogenic.lachryvision.mixin;
 
+import me.lachrymogenic.lachryvision.Config;
 import me.lachrymogenic.lachryvision.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
@@ -99,7 +100,12 @@ public class MixinSignRenderer extends TileEntitySpecialRenderer {
             if (i == p_147500_1_.lineBeingEdited)
             {
                 //s = " " + s + "| ";
-                s = " " + returnString(s,'|',false) + " ";
+                if (Config.BetterSignEditing) {
+                    s = " " + returnString(s,'|',false) + " ";
+                }
+                else {
+                    s = "> " + s + " <";
+                }
                 fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, i * 10 - p_147500_1_.signText.length * 5, b0);
             }
             else

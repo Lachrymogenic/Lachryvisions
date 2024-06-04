@@ -1,6 +1,7 @@
 package me.lachrymogenic.lachryvision.mixin;
 
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import me.lachrymogenic.lachryvision.Config;
 import me.lachrymogenic.lachryvision.Constants;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -22,7 +23,11 @@ public abstract class MixinHorse extends EntityAnimal implements IInvBasic {
     }
     @ModifyConstant(method = "getHurtSound", constant = @Constant(intValue = 3))
     private int modifyInteger(int original) {
-        return 999;
+        if (Config.NoHorseRearing) {
+            return 999;
+        }
+        else
+            return 3;
     }
 
 }
