@@ -17,14 +17,12 @@ whilst also making the game better.
 <img src="./showcase/showcase_03.gif" alt="drawing" width="400"/> <img src="./showcase/showcase_04.png" alt="drawing" width="400"/>
 </p>
 
-### TLDR: I HATE MICROSOFT.
-1.9+ are the worst versions of the game, especially 1.19 and 1.20. In my eyes, there is just so much bloat
-that doesn't need to be in the game, and Microsoft's acquisition of Minecraft aswell as annexing of Notch and kicking him
-out from events, made me resent Microsoft even more. Even with Account Migration and 1.19 "Online Safety Features" it's just... 
-<br><br>
-It's not Minecraft anymore.<br><br>So I made a mod that allows me to modify Minecraft... well...
- however I envision! I also really wanted to get into Java and modding so this is how I was gonna do that. This mod exists so I can play Minecraft the way I intend to play it.
- And Microsoft cannot stop me. 
+### My Goals
+My goal with this mod is to create a better version of Minecraft, by using 1.7.10 as a base and coming up with new features and
+ideas that I think should be in the game. This would include general Quality of Life fixes, Backporting specific features from 1.8 and
+adding new Vanilla+ features.
+#### What makes this different from something like EtFuturum?
+Overall, not much, except my focus for this mod is on purism to a version of Minecraft that's not tainted by Microsoft.
 # Features
 * Improved Sign Editing
 * Boats no longer crash into planks and sticks
