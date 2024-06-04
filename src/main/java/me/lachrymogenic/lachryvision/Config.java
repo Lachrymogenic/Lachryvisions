@@ -13,7 +13,6 @@ public class Config {
     public static boolean Stack16To64;
     public static boolean NoHorseRearing;
     public static boolean LeatherBootsProtectCrops;
-
     public static boolean LeashableVillagers = true;
 
     public static boolean RegisterCustomBlocks;
