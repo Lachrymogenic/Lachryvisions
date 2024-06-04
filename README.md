@@ -20,7 +20,8 @@ whilst also making the game better.
 ### My Goals
 My goal with this mod is to create a better version of Minecraft, by using 1.7.10 as a base and coming up with new features and
 ideas that I think should be in the game. This would include general Quality of Life fixes, Backporting specific features from 1.8 and
-adding new Vanilla+ features.
+adding new Vanilla+ features. The primary goal is to maintain the look and feel of Pre-1.13 Minecraft whilst adding features that
+make the game more fun to play.
 #### What makes this different from something like EtFuturum?
 Overall, not much, except my focus for this mod is on purism to a version of Minecraft that's not tainted by Microsoft.
 # Features
@@ -31,12 +32,14 @@ Overall, not much, except my focus for this mod is on purism to a version of Min
 * Leather boots allow you to avoid trampling on your crops!
 * More commands, like /gmc, /gms, /gma
 * Improved stack limits of items that are limited to 16, to 64.
+* Configuration Menu to toggle what features you do and don't want.
 # Roadmap / Todo
-* Backport good features from new versions (according to my personal tastes)
-* Fix bugs and annoyances in 1.7.10
+* Backport good features from new versions (according to my personal tastes). This would include useful 1.8 commands and Redstone features with lore friendly renames.
+  For example, the Sculk Sensor would become a "Sensor" block.
+* Fix more bugs and annoyances in 1.7.10
 * Add Vanilla items that respect the artstyle of the game.
 ## Will you port to 1.9+?
-No! Although I'm down for making a similar mod for 1.8.9 but removing stuff is harder than adding.
+No. 
 
 # Installation
 Lachryvisions requires [Unimixins](https://www.curseforge.com/minecraft/mc-mods/unimixins) to load mixins and operate correctly. Once you have both mods downloaded, simply
