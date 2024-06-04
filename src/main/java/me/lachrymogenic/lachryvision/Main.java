@@ -52,7 +52,8 @@ public class Main
         Constants.checkItemConfig();
         //Items.golden_sword.setNoRepair();
         MinecraftForge.EVENT_BUS.register(new me.lachrymogenic.lachryvision.events.RightClickBlockEvent());
-        GameRegistry.addSmelting(ItemRegistry.raw_mutton,new ItemStack(ItemRegistry.cooked_mutton,1),30);
-
+        if (Config.RegisterCustomItems) {
+            GameRegistry.addSmelting(ItemRegistry.raw_mutton, new ItemStack(ItemRegistry.cooked_mutton, 1), 30);
+        }
     }
 }

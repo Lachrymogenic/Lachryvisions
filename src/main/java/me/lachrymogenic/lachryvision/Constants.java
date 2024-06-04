@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 public class Constants {
     public static final String MODID = "lachryvision";
     public static final String GUIFACTORY = "me.lachrymogenic.lachryvision.gui.GuiFactory";
-    public static final String VERSION = "1.2";
+    public static final String VERSION = "1.2.1";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
 
     public static int backLogInt;

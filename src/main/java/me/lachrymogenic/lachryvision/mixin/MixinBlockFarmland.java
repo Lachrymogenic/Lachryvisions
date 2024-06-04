@@ -25,34 +25,38 @@ public abstract class MixinBlockFarmland {
     @Inject(method = "onFallenUpon",at = @At("HEAD"),cancellable = true)
     public void onFallenUpon(World world, int x, int y, int z, Entity entity, float p_149746_6_, CallbackInfo ci)
     {
-        if (!world.isRemote && world.rand.nextFloat() < p_149746_6_ - 0.5F)
-        {
-            if (!(entity instanceof EntityPlayer) && !world.getGameRules().getGameRuleBooleanValue("mobGriefing"))
-            {
-                ci.cancel();
-                return;
-            }
-            if (entity instanceof EntityPlayer) {
-                EntityPlayer player = ((EntityPlayer) entity);
-                if (player.getCurrentArmor(0) != null) {
-                    if ((Objects.equals(player.getCurrentArmor(0).getItem().getUnlocalizedName(), "item.bootsCloth")) &&
-                    Config.LeatherBootsProtectCrops) {
-                        if (!player.capabilities.isCreativeMode) player.getCurrentArmor(0).attemptDamageItem(1,new Random());
-                        if (
-                                player.getCurrentArmor(0).getItemDamage() >=
-                                player.getCurrentArmor(0).getMaxDamage()
-                        ) {
-                            player.renderBrokenItemStack(((EntityPlayer) entity).getCurrentArmor(0));
-                            player.setCurrentItemOrArmor(1,null);
-                        }
+        if (!Config.NoTramplingCrops) {
+            if (Config.LeatherBootsProtectCrops) {
+                if (!world.isRemote && world.rand.nextFloat() < p_149746_6_ - 0.5F)
+                {
+                    if (!(entity instanceof EntityPlayer) && !world.getGameRules().getGameRuleBooleanValue("mobGriefing"))
+                    {
                         ci.cancel();
                         return;
                     }
+                    if (entity instanceof EntityPlayer) {
+                        EntityPlayer player = ((EntityPlayer) entity);
+                        if (player.getCurrentArmor(0) != null) {
+                            if ((Objects.equals(player.getCurrentArmor(0).getItem().getUnlocalizedName(), "item.bootsCloth")) &&
+                                    Config.LeatherBootsProtectCrops) {
+                                if (!player.capabilities.isCreativeMode) player.getCurrentArmor(0).attemptDamageItem(1,new Random());
+                                if (
+                                        player.getCurrentArmor(0).getItemDamage() >=
+                                                player.getCurrentArmor(0).getMaxDamage()
+                                ) {
+                                    player.renderBrokenItemStack(((EntityPlayer) entity).getCurrentArmor(0));
+                                    player.setCurrentItemOrArmor(1,null);
+                                }
+                                ci.cancel();
+                                return;
+                            }
+                        }
+                    }
+                    world.setBlock(x, y, z, Blocks.dirt);
                 }
+                ci.cancel();
             }
-            world.setBlock(x, y, z, Blocks.dirt);
         }
-        ci.cancel();
     }
 
 }

@@ -8,6 +8,10 @@ import java.util.Stack;
 
 public class Config {
     public static Configuration config;
+    public static Configuration LegacyFixesConfig;
+    // LEGACYFIXES
+    public static boolean NoTramplingCrops = false;
+    // EVERYTHING ELSE
     public static boolean NoBoatCrashing;
     public static boolean BetterSignEditing;
     public static boolean Stack16To64;
@@ -22,6 +26,9 @@ public class Config {
     public static boolean CrosshairVisibleThirdPerson;
 
     public static void assign() {
+        // LEGACY FIXES
+        NoTramplingCrops = LegacyFixesConfig.get("General","noTrample",false).getBoolean();
+        // EVERYTHING ELSE
         NoBoatCrashing = config.get("General", "No Boat Crashing", true,"" +
                 "In 1.7.10, boats crash into walls, which can be annoying. When No Boat Crashing is enabled, this no longer" +
                 " occurs.").getBoolean();
@@ -57,6 +64,8 @@ public class Config {
         try  { newFile.createNewFile(); } catch (IOException var3) {}
 
         config = new Configuration(newFile);
+        LegacyFixesConfig = new Configuration(new File(location + "/legacyfixes.cfg"));
+        LegacyFixesConfig.load();
         config.load();
         assign();
         config.save();
